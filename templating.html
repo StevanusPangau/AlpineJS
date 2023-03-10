@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine Templating</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine JS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+  <body>
+    <!-- Alpine JS Menawarkan banyak directive untuk manipulasi DOM -->
+    <!-- 
+        x-text          (Untuk mengubah text dari sebuah element html)
+        x-show
+        x-transition
+        x-bind
+        x-if
+        x-for
+        x-html          (untuk membuat inner html)
+     -->
+
+    <!-- x-text -->
+    <div x-data="{nama : 'Stevanus Pangau', angka : 2, link : '<a href=\'https://youtube.com\'>Stevanus Pangau</a>'}" class="container mx-auto w-1/2 text-center mt-10 bg-lime-200 p-10 rounded-xl shadow">
+      <!-- contoh membuat perhitungan dalam alpine -->
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-pink-400 bg-clip-text text-transparent drop-shadow-sm">
+        Hallo, <span x-text="angka"></span> adalah bilangan : <span x-text="angka % 2 === 0 ? 'Genap' : 'Ganjil'"></span>
+      </h1>
+
+      <!-- x-html -->
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-pink-400 bg-clip-text text-transparent drop-shadow-sm">Hallo, <span x-html="link"></span></h1>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belajar Alpine</title>
+
+    <!-- Alpine JS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+  <body>
+    <!-- contoh local state -->
+    <div x-data="{nama : 'Evan Pangau'}">
+      <!-- nested local state -->
+      <div x-data="{umur : '21'}">
+        <p><span x-text="nama"></span></p>
+        <p><span x-text="umur"></span></p>
+      </div>
+    </div>
+
+    <!-- scope -->
+    <div x-data="{foo : 'bar'}">
+      <span x-text="foo"></span>
+      <div x-data="{bar : 'baz'}">
+        <span x-text="foo"></span>
+        <div x-data="{foo : 'bob'}">
+          <span x-text="foo"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- single element data -->
+    <button x-data="{label : 'Klik Di Sini'}" x-text="label"></button>
+
+    <!-- print global scope -->
+    <div x-data>
+      <ul>
+        <template x-for="nama in $store.mahasiswa.nama">
+          <li x-text="nama"></li>
+        </template>
+      </ul>
+    </div>
+
+    <!-- data less alpine = tidak mempunyai data state local atau globla -->
+    <!-- digunakan jika kita butuh fitur dari alpine -->
+    <button x-data @click="alert('Tombol Telah Di Klik!')">Klik Saya</button>
+
+    <script>
+      // buat global scope
+      document.addEventListener('alpine:init', () => {
+        Alpine.store('mahasiswa', {
+          tahun: 2023,
+          nama: ['Stevanus', 'Evan', 'Pangau'],
+        });
+      });
+    </script>
+  </body>
+</html>
