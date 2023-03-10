@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine JS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+  <body>
+    <!-- 
+        TWO WAY DATA BINDING
+        
+        x-model
+
+        Element:
+        input type="text"
+        textarea
+        input type="checkbox"
+        input type="radio"
+        select
+    -->
+
+    <div x-data="{pesan : '', open : false, hobby : []}" class="container mx-auto w-3/4 text-center mt-10 bg-red-200 p-10 rounded-xl shadow">
+      <label for="nama" class="text-sm font-medium text-gray-900 block mb-2">Masukan Pesan</label>
+      <textarea x-model="pesan" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+      <span x-text="pesan.length" x-bind:class="pesan.length > 20 ? 'text-red-500' : ''" class="text-lg flex text-green-500 font-bold"></span>
+
+      <input type="checkbox" id="checkbox" x-model="open" />
+      <label for="checkbox" x-text="!open ? 'Kosong' : 'Terisi'"></label>
+
+      <div class="mt-5">
+        <div class="flex items-center mb-2">
+          <input x-model="hobby" type="checkbox" id="menulis" class="w-4 h-4 text-blue-600 border-gray-300 rounded" value="menulis" />
+          <label for="menulis" class="ml-2 text-sm">Menulis</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input x-model="hobby" type="checkbox" id="menyanyi" class="w-4 h-4 text-blue-600 border-gray-300 rounded" value="menyanyi" />
+          <label for="menyanyi" class="ml-2 text-sm">Menyanyi</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input x-model="hobby" type="checkbox" id="ngoding" class="w-4 h-4 text-blue-600 border-gray-300 rounded" value="ngoding" />
+          <label for="ngoding" class="ml-2 text-sm">Ngoding</label>
+        </div>
+        <p class="text-left text-sm">Hobby : <span x-text="hobby.map(h => h.charAt(0).toUpperCase() + h.slice(1))"></span></p>
+      </div>
+    </div>
+  </body>
+</html>
